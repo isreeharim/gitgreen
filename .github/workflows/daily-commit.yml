@@ -2,9 +2,18 @@ name: Daily Contribution Generator
 
 on:
   schedule:
-    # Runs at 04:30 and 15:30 UTC every day (twice daily for consistency)
-    - cron: '30 4,15 * * *'
-  workflow_dispatch: # Allows manual trigger anytime from GitHub UI
+    # Runs every day at 04:30 UTC (10:00 AM IST)
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+    inputs:
+      min_commits:
+        description: 'Minimum commits'
+        required: false
+        default: '15'
+      max_commits:
+        description: 'Maximum commits'
+        required: false
+        default: '20'
 
 permissions:
   contents: write
@@ -19,14 +28,17 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Update Activity Log
-        run: |
-          echo "Activity on $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> activity.log
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-      - name: Commit and Push Changes
+      - name: Generate Random Commits
         run: |
-          git config --local user.name "isreeharim"
-          git config --local user.email "isreeharim@gmail.com"
-          git add activity.log
-          git commit -m "chore(activity): update daily log [skip ci]" || exit 0
+          MIN=${{ inputs.min_commits || '15' }}
+          MAX=${{ inputs.max_commits || '20' }}
+          python generate_commits.py --min "$MIN" --max "$MAX"
+
+      - name: Push Commits
+        run: |
           git push origin main
