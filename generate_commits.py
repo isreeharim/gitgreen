@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Daily Random Contribution Generator
-Generates a random number of commits (default 15-20) spread naturally across the day.
+Generates a random number of commits (default 20-25) spread naturally across the day.
 """
 
 import argparse
@@ -43,7 +43,7 @@ def run_command(cmd, env=None):
     return result.stdout.strip()
 
 
-def generate_commits(min_commits=15, max_commits=20, target_date=None):
+def generate_commits(min_commits=20, max_commits=25, target_date=None):
     if target_date is None:
         target_date = datetime.datetime.now(datetime.timezone.utc).date()
 
@@ -96,8 +96,8 @@ def generate_commits(min_commits=15, max_commits=20, target_date=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate daily git contributions.")
-    parser.add_argument("--min", type=int, default=15, help="Minimum commits (default: 15)")
-    parser.add_argument("--max", type=int, default=20, help="Maximum commits (default: 20)")
+    parser.add_argument("--min", type=int, default=20, help="Minimum commits (default: 20)")
+    parser.add_argument("--max", type=int, default=25, help="Maximum commits (default: 25)")
     parser.add_argument("--date", type=str, default=None, help="Target date YYYY-MM-DD (default: today)")
 
     args = parser.parse_args()
