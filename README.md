@@ -48,7 +48,7 @@ git push -u origin main
 3. Click the **Run workflow** dropdown button, then click **Run workflow**.
 4. Once completed, check your GitHub profile page to see your green contribution square!
 
-The action is set to run automatically twice daily at 04:30 and 15:30 UTC (`.github/workflows/daily-commit.yml`).
+The action is set to run automatically every day at 04:30 UTC (`10:00 AM IST`), picking a random number between **15 and 20 commits** each day with natural timestamps and commit messages.
 
 ---
 
@@ -56,11 +56,13 @@ The action is set to run automatically twice daily at 04:30 and 15:30 UTC (`.git
 
 If you prefer to run it locally on your PC:
 
-1. Open PowerShell as Administrator.
-2. Run the following command to register a daily task at 10:00 AM:
+1. You can manually run:
+```powershell
+.\autocommit.ps1
+```
+2. Or register a daily task with Windows Task Scheduler:
 ```powershell
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass -File `"$PSScriptRoot\autocommit.ps1`""
 $trigger = New-ScheduledTaskTrigger -Daily -At "10:00AM"
-Register-ScheduledTask -TaskName "GitGreenDailyCommit" -Action $action -Trigger $trigger -Description "Daily Git Commit to GitGreen"
+Register-ScheduledTask -TaskName "GitGreenDailyCommit" -Action $action -Trigger $trigger -Description "Daily Git Commit to GitGreen (15-20 commits)"
 ```
-Or you can manually run `.\autocommit.ps1` anytime.
