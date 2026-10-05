@@ -9,11 +9,11 @@ on:
       min_commits:
         description: 'Minimum commits'
         required: false
-        default: '20'
+        default: '70'
       max_commits:
         description: 'Maximum commits'
         required: false
-        default: '25'
+        default: '75'
 
 permissions:
   contents: write
@@ -35,8 +35,8 @@ jobs:
 
       - name: Generate Random Commits
         run: |
-          MIN=${{ inputs.min_commits || '20' }}
-          MAX=${{ inputs.max_commits || '25' }}
+          MIN=${{ inputs.min_commits || '70' }}
+          MAX=${{ inputs.max_commits || '75' }}
           python generate_commits.py --min "$MIN" --max "$MAX"
 
       - name: Push Commits

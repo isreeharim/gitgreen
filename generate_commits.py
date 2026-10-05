@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Daily Random Contribution Generator
-Generates a random number of commits (default 20-25) spread naturally across the day.
+Daily Contribution Generator
+Generates a random number of commits (default 70-75) with past timestamps
+so they immediately reflect on today's GitHub contribution graph.
 """
 
 import argparse
@@ -32,6 +33,16 @@ MESSAGES = [
     "style: reformat activity ledger entries",
     "chore(sync): reconcile daily ledger state",
     "feat(telemetry): capture routine heartbeat entry",
+    "chore(health): record heartbeat ping status",
+    "perf(engine): optimize telemetry flush buffer",
+    "docs(ledger): document daily activity cycle",
+    "fix(stream): stabilize activity journal sequence",
+    "refactor(sync): consolidate telemetry dispatch",
+    "test(metric): validate routine record consistency",
+    "style(clean): organize activity journal entries",
+    "build(ci): refresh routine build artifacts",
+    "chore(bench): checkpoint daily activity benchmark",
+    "feat(stats): capture aggregated daily activity",
 ]
 
 
@@ -43,17 +54,29 @@ def run_command(cmd, env=None):
     return result.stdout.strip()
 
 
-def generate_commits(min_commits=20, max_commits=25, target_date=None):
+def generate_commits(min_commits=70, max_commits=75, target_date=None):
+    now_utc = datetime.datetime.now(datetime.timezone.utc)
     if target_date is None:
-        target_date = datetime.datetime.now(datetime.timezone.utc).date()
+        target_date = now_utc.date()
 
     count = random.randint(min_commits, max_commits)
-    print(f"Generating {count} random commits for date: {target_date}")
+    print(f"Generating {count} commits for date: {target_date}")
 
-    # Generate `count` distinct ascending times between 08:30 and 22:30 (in seconds from midnight)
-    start_sec = 8 * 3600 + 30 * 60  # 08:30
-    end_sec = 22 * 3600 + 30 * 60    # 22:30
+    # Ensure all timestamps are strictly in the PAST so GitHub immediately counts them
+    if target_date == now_utc.date():
+        current_sec = now_utc.hour * 3600 + now_utc.minute * 60 + now_utc.second
+        end_sec = max(count * 15, current_sec - 15)
+        start_sec = max(0, min(3600, end_sec - count * 60))
+        if end_sec - start_sec <= count:
+            start_sec = max(0, end_sec - count * 15)
+    else:
+        start_sec = 1800  # 00:30 UTC
+        end_sec = 23 * 3600  # 23:00 UTC
 
+    if (end_sec - start_sec) < count:
+        end_sec = start_sec + count + 20
+
+    # Pick `count` ascending random timestamps strictly before end_sec
     sampled_seconds = sorted(random.sample(range(start_sec, end_sec), count))
 
     log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "activity.log")
@@ -78,7 +101,7 @@ def generate_commits(min_commits=20, max_commits=25, target_date=None):
         with open(log_file_path, "a", encoding="utf-8") as f:
             f.write(f"[{readable_time}] {commit_title}\n")
 
-        # Stage and commit with custom date
+        # Stage and commit with custom date in the past
         commit_env = base_env.copy()
         commit_env["GIT_AUTHOR_DATE"] = iso_time
         commit_env["GIT_COMMITTER_DATE"] = iso_time
@@ -91,19 +114,26 @@ def generate_commits(min_commits=20, max_commits=25, target_date=None):
         run_command(["git", "commit", "-m", commit_title], env=commit_env)
         print(f"  [{idx}/{count}] Committed at {readable_time}: {commit_title}")
 
-    print(f"\nSuccessfully generated {count} commits.")
+    print(f"\nSuccessfully generated {count} commits (all strictly in the past).")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate daily git contributions.")
-    parser.add_argument("--min", type=int, default=20, help="Minimum commits (default: 20)")
-    parser.add_argument("--max", type=int, default=25, help="Maximum commits (default: 25)")
+    parser.add_argument("--min", type=int, default=70, help="Minimum commits (default: 70)")
+    parser.add_argument("--max", type=int, default=75, help="Maximum commits (default: 75)")
+    parser.add_argument("--count", type=int, default=None, help="Exact commit count (overrides min and max)")
     parser.add_argument("--date", type=str, default=None, help="Target date YYYY-MM-DD (default: today)")
 
     args = parser.parse_args()
+
+    min_c = args.min
+    max_c = args.max
+    if args.count is not None:
+        min_c = args.count
+        max_c = args.count
 
     date_obj = None
     if args.date:
         date_obj = datetime.datetime.strptime(args.date, "%Y-%m-%d").date()
 
-    generate_commits(min_commits=args.min, max_commits=args.max, target_date=date_obj)
+    generate_commits(min_commits=min_c, max_commits=max_c, target_date=date_obj)
