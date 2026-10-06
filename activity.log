@@ -342,3 +342,4 @@ Activity on 2026-09-30 11:46:54 UTC
 [2026-10-06 05:09:41 UTC] docs(ledger): document daily activity cycle [#34/73] [skip ci]
 [2026-10-06 05:13:59 UTC] docs(ledger): document daily activity cycle [#35/73] [skip ci]
 [2026-10-06 05:19:00 UTC] chore(cleanup): prune obsolete telemetry buffer [#36/73] [skip ci]
+[2026-10-06 05:37:26 UTC] refactor(sync): consolidate telemetry dispatch [#37/73] [skip ci]
