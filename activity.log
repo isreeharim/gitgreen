@@ -1945,3 +1945,4 @@ Activity on 2026-09-30 11:46:54 UTC
 [2026-10-28 06:30:07 UTC] refactor(metric): refine routine snapshot parser [#38/71] [skip ci]
 [2026-10-28 06:33:43 UTC] fix(data): normalize activity record formatting [#39/71] [skip ci]
 [2026-10-28 06:58:19 UTC] chore(cleanup): prune obsolete telemetry buffer [#40/71] [skip ci]
+[2026-10-28 07:01:20 UTC] docs(ledger): document daily activity cycle [#41/71] [skip ci]
