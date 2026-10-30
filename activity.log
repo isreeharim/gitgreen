@@ -2074,3 +2074,4 @@ Activity on 2026-09-30 11:46:54 UTC
 [2026-10-30 03:40:32 UTC] build: update routine telemetry bundle [#24/72] [skip ci]
 [2026-10-30 03:54:12 UTC] perf(tracker): improve daily event indexing [#25/72] [skip ci]
 [2026-10-30 04:10:16 UTC] chore(activity): update daily activity metric [#26/72] [skip ci]
+[2026-10-30 04:14:21 UTC] docs(ledger): document daily activity cycle [#27/72] [skip ci]
