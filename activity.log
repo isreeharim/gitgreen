@@ -2157,3 +2157,4 @@ Activity on 2026-09-30 11:46:54 UTC
 [2026-10-31 06:40:44 UTC] style: format activity ledger records [#35/72] [skip ci]
 [2026-10-31 06:49:15 UTC] refactor(sync): consolidate telemetry dispatch [#36/72] [skip ci]
 [2026-10-31 06:55:18 UTC] chore(activity): update daily activity metric [#37/72] [skip ci]
+[2026-10-31 06:57:02 UTC] docs(ledger): document daily activity cycle [#38/72] [skip ci]
