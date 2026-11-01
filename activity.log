@@ -2237,3 +2237,4 @@ Activity on 2026-09-30 11:46:54 UTC
 [2026-11-01 07:26:41 UTC] test: verify activity timestamp sequence [#43/74] [skip ci]
 [2026-11-01 07:44:34 UTC] chore(cleanup): prune obsolete telemetry buffer [#44/74] [skip ci]
 [2026-11-01 07:55:56 UTC] refactor(sync): consolidate telemetry dispatch [#45/74] [skip ci]
+[2026-11-01 08:07:27 UTC] docs(ledger): document daily activity cycle [#46/74] [skip ci]
