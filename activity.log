@@ -2553,3 +2553,4 @@ Activity on 2026-09-30 11:46:54 UTC
 [2026-11-05 12:22:09 UTC] feat(telemetry): capture routine heartbeat entry [#72/74] [skip ci]
 [2026-11-05 12:33:35 UTC] chore(activity): update daily activity metric [#73/74] [skip ci]
 [2026-11-05 12:36:27 UTC] chore(cleanup): prune obsolete telemetry buffer [#74/74] [skip ci]
+[2026-11-06 01:21:09 UTC] docs(ledger): document daily activity cycle [#1/71] [skip ci]
