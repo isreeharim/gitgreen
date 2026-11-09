@@ -2783,3 +2783,4 @@ Activity on 2026-09-30 11:46:54 UTC
 [2026-11-09 03:06:41 UTC] build(ci): refresh routine build artifacts [#14/75] [skip ci]
 [2026-11-09 03:17:16 UTC] feat(stats): capture aggregated daily activity [#15/75] [skip ci]
 [2026-11-09 03:18:54 UTC] chore(sync): reconcile daily ledger state [#16/75] [skip ci]
+[2026-11-09 03:22:57 UTC] docs(ledger): document daily activity cycle [#17/75] [skip ci]
