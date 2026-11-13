@@ -3114,3 +3114,4 @@ Activity on 2026-09-30 11:46:54 UTC
 [2026-11-13 07:47:08 UTC] chore(cleanup): prune obsolete telemetry buffer [#49/73] [skip ci]
 [2026-11-13 07:50:40 UTC] feat(stats): capture aggregated daily activity [#50/73] [skip ci]
 [2026-11-13 07:54:10 UTC] perf: optimize log append throughput [#51/73] [skip ci]
+[2026-11-13 08:09:12 UTC] docs(ledger): document daily activity cycle [#52/73] [skip ci]
