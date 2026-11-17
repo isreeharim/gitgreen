@@ -8,7 +8,7 @@ Automated daily Git commits to keep your GitHub contribution graph active and gr
 
 GitHub credits contributions to your profile graph when:
 1. Commits are pushed to the repository's **default branch** (`main`).
-2. The commit author email matches your **verified GitHub email** (`isreeharim@gmail.com`).
+2. The commit author email matches your **verified GitHub email** .
 
 There are two ways to run this:
 - **Option 1 (Recommended): GitHub Actions** &mdash; Runs automatically in the cloud every day on a schedule. Your computer doesn't even need to be switched on.
