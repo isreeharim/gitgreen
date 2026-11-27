@@ -4125,3 +4125,4 @@ Activity on 2026-09-30 11:46:54 UTC
 [2026-11-27 09:52:28 UTC] refactor(sync): consolidate telemetry dispatch [#46/70] [skip ci]
 [2026-11-27 09:52:34 UTC] fix(runtime): ensure clean record boundary [#47/70] [skip ci]
 [2026-11-27 09:57:48 UTC] perf(tracker): improve daily event indexing [#48/70] [skip ci]
+[2026-11-27 09:58:36 UTC] docs(ledger): document daily activity cycle [#49/70] [skip ci]
